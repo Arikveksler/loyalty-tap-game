@@ -35,7 +35,7 @@ RATE_LIMIT_MAX_REQUESTS = 20  # max requests per window
 rate_limit_cache = {}
 
 # Referral bonus points
-REFERRAL_BONUS = 500
+REFERRAL_BONUS = 5000
 
 # ============================================
 # DATABASE FUNCTIONS

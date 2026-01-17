@@ -15,7 +15,7 @@ let state = {
     sessionTaps: 0,
     sessionStart: Date.now(),
     friendsCount: 0,
-    currentCard: 'amex',
+    currentCard: 'starter',
     isLoading: false,
     lastTapTime: 0
 };
@@ -27,14 +27,14 @@ const TAP_COOLDOWN = 50;
 // CARDS DEFINITION
 // ============================================
 const CARDS = {
-    amex: { name: 'AMEX', icon: '💳', color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', unlockPoints: 0 },
-    visa: { name: 'VISA', icon: '💳', color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', unlockPoints: 0 },
-    mastercard: { name: 'MASTERCARD', icon: '💳', color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', unlockPoints: 500 },
-    apple: { name: 'APPLE CARD', icon: '🍎', color: 'linear-gradient(135deg, #e0e0e0 0%, #ffffff 100%)', unlockPoints: 500 },
-    google: { name: 'GOOGLE PAY', icon: '🔵', color: 'linear-gradient(135deg, #4285f4 0%, #34a853 50%, #fbbc05 75%, #ea4335 100%)', unlockPoints: 500 },
-    black: { name: 'BLACK CARD', icon: '⬛', color: 'linear-gradient(135deg, #232526 0%, #414345 100%)', unlockPoints: 2000 },
-    gold: { name: 'GOLD CARD', icon: '🥇', color: 'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)', unlockPoints: 5000 },
-    phantom: { name: 'PHANTOM', icon: '👻', color: 'linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%)', unlockPoints: 10000 }
+    starter: { name: 'STARTER', icon: '💳', color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', unlockPoints: 0 },
+    basic: { name: 'BASIC', icon: '💳', color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', unlockPoints: 0 },
+    bronze: { name: 'BRONZE', icon: '🥉', color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', unlockPoints: 500 },
+    silver: { name: 'SILVER', icon: '🥈', color: 'linear-gradient(135deg, #e0e0e0 0%, #ffffff 100%)', unlockPoints: 500 },
+    ruby: { name: 'RUBY', icon: '💎', color: 'linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%)', unlockPoints: 500 },
+    black: { name: 'BLACK', icon: '⬛', color: 'linear-gradient(135deg, #232526 0%, #414345 100%)', unlockPoints: 2000 },
+    gold: { name: 'GOLD', icon: '🥇', color: 'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)', unlockPoints: 5000 },
+    diamond: { name: 'DIAMOND', icon: '💠', color: 'linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%)', unlockPoints: 10000 }
 };
 
 // ============================================
@@ -216,8 +216,8 @@ async function loadLeaderboard() {
             else if (index === 1) medal = '🥈';
             else if (index === 2) medal = '🥉';
             
-            // Display name (anonymized unless current user)
-            const displayName = isCurrentUser ? 'You' : `Player #${user.rank}`;
+            // Display name - show actual username or "You" for current user
+            const displayName = isCurrentUser ? 'You' : (user.name || `Player #${user.rank}`);
             
             item.innerHTML = `
                 <div class="rank">${medal || user.rank}</div>
@@ -260,7 +260,7 @@ function checkReferral() {
 
 function invite() {
     const link = `https://t.me/${BOT_USERNAME}/app?startapp=${state.userId}`;
-    const text = `🎮 Join me in Loyalty Tapper and let's compete! Tap to earn points and climb the leaderboard!`;
+    const text = `🎮 Join me in AlphaTapper and let's compete! Tap to earn points and climb the leaderboard!`;
     
     // Use Telegram's native share if available
     if (window.Telegram && window.Telegram.WebApp) {
