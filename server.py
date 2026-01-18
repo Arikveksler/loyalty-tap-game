@@ -27,9 +27,11 @@ CORS(app)
 # ============================================
 # CONFIGURATION
 # ============================================
-# Use pooler URL for Railway compatibility
-DEFAULT_DB_URL = 'postgresql://postgres.ssvvaljepowyfqmtrrqx:Garik2026!!@aws-0-eu-central-1.pooler.supabase.com:6543/postgres'
-DATABASE_URL = os.environ.get('DATABASE_URL', DEFAULT_DB_URL)
+# Database URL from environment variable (required)
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if not DATABASE_URL:
+    print("WARNING: DATABASE_URL not set!")
+    DATABASE_URL = 'postgresql://localhost/loyalty_game'
 
 # Rate limiting settings
 RATE_LIMIT_WINDOW = 1  # seconds
