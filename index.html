@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AlphaTapper Game</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <div class="header">
+            <h1>💳 AlphaTapper</h1>
+            <div class="header-stats">
+                <div class="stat">
+                    <span class="stat-label">Your Rank</span>
+                    <span class="stat-value" id="user-rank">-</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Your Points</span>
+                    <span class="stat-value" id="user-points">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Game Area -->
+        <div class="game-container">
+            <!-- Card Display -->
+            <div class="card-container">
+                <div class="card" id="card" onclick="tap()">
+                    <div class="card-inner">
+                        <div class="card-number">💳</div>
+                        <div class="card-name" id="card-name">STARTER</div>
+                        <div class="card-points" id="card-points">0</div>
+                        <div class="card-label">POINTS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tap Button -->
+            <button class="tap-button" id="tap-btn" onclick="tap()">
+                <span>TAP!</span>
+            </button>
+
+            <!-- Stats -->
+            <div class="game-stats">
+                <div class="stat-box">
+                    <div class="stat-title">Today's Taps</div>
+                    <div class="stat-number" id="today-taps">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-title">Session Time</div>
+                    <div class="stat-number" id="session-time">0:00</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-title">Friends Invited</div>
+                    <div class="stat-number" id="friends-count">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard-section">
+            <h2>🏆 Leaderboard</h2>
+            <div class="leaderboard" id="leaderboard">
+                <div class="leaderboard-item">
+                    <div class="rank">1</div>
+                    <div class="name">Loading...</div>
+                    <div class="points">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="btn btn-primary" id="invite-btn" onclick="invite()">
+                👥 Invite Friend
+            </button>
+            <button class="btn btn-secondary" id="cards-btn" onclick="showCards()">
+                🎴 Cards
+            </button>
+        </div>
+
+        <!-- Ad Space -->
+        <div id="ad-space" style="margin: 20px 0; min-height: 100px;">
+            <!-- RichAds will inject here -->
+        </div>
+
+        <!-- Modal for Cards -->
+        <div id="cards-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeCards()">&times;</span>
+                <h2>Available Cards</h2>
+                <div class="cards-grid" id="cards-grid">
+                    <!-- Cards will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- RichAds Code - Replace YOUR_CODE_HERE with actual code from RichAds -->
+    <!-- <script src="https://richads.com/code/YOUR_CODE_HERE"></script> -->
+</body>
+</html>
