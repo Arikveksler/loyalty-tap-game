@@ -105,7 +105,15 @@
     </div>
 
     <script src="script.js"></script>
-    <!-- RichAds Code - Replace YOUR_CODE_HERE with actual code from RichAds -->
-    <!-- <script src="https://richads.com/code/YOUR_CODE_HERE"></script> -->
+
+    <!-- RichAds Integration -->
+    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
+    <script>
+        window.TelegramAdsController = new TelegramAdsController();
+        window.TelegramAdsController.initialize({
+            pubId: "999802",
+            appId: "5821",
+        });
+    </script>
 </body>
 </html>
